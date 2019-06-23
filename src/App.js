@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import SearchBox from "./components/SearchBox";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className="App"
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        height: "100vh",
+        background: "#000",
+        color: "#fff",
+        alignItems: "center"
+      }}
+    >
+      <div
+        style={{
+          width: "100%"
+        }}
+      >
+        <SearchBox/>
+      </div>
+      <div
+        style={{
+          width: "100%"
+        }}
+      >
+        Two
+      </div>
     </div>
   );
 }
