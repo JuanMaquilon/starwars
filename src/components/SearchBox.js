@@ -20,6 +20,28 @@ class SearchBox extends Component {
     });
   };
 
+  handleNext = () => {
+    console.log("STATE ON NEXT ", this.state);
+    console.log("URL" , this.state.results.next);
+    fetch(this.state.results.next)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({ results: data }, () => {
+          console.log("LOCAL STATE -->", this.state);
+        })
+      );
+  };
+
+  handlePrev = () => {
+      fetch(this.state.results.previous)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({ results: data }, () => {
+          console.log("LOCAL STATE -->", this.state);
+        })
+      );
+  }
+
   handleClick = () => {
     // DO THE FECTCH
     //
@@ -43,7 +65,7 @@ class SearchBox extends Component {
     const ShowPrev =
       this.state.results && this.state.results.previous !== null ? (
         <div>
-          <button type="button" className="btn btn-primary">
+          <button type="button" className="btn btn-primary" onClick={this.handlePrev}>
             Prev
           </button>
         </div>
@@ -52,7 +74,11 @@ class SearchBox extends Component {
     const ShowNext =
       this.state.results && this.state.results.next !== null ? (
         <div>
-          <button type="button" className="btn btn-primary">
+          <button
+            type="button"
+            onClick={this.handleNext}
+            className="btn btn-primary"
+          >
             Next
           </button>
         </div>
