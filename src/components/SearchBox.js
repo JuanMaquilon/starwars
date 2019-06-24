@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import logo from "../assets/logo-star-wars.png";
+import male from "../assets/male@2x.png";
+import female from "../assets/female@2x.png";
 import SearchResults from "./SearchResults";
 
 class SearchBox extends Component {
@@ -22,8 +24,11 @@ class SearchBox extends Component {
 
   handleNext = () => {
     console.log("STATE ON NEXT ", this.state);
-    console.log("URL" , this.state.results.next);
-    fetch(this.state.results.next)
+    console.log("URL", this.state.results.next);
+
+    const { results } = this.state;
+
+    fetch(results.next)
       .then(response => response.json())
       .then(data =>
         this.setState({ results: data }, () => {
@@ -33,20 +38,16 @@ class SearchBox extends Component {
   };
 
   handlePrev = () => {
-      fetch(this.state.results.previous)
+    fetch(this.state.results.previous)
       .then(response => response.json())
       .then(data =>
         this.setState({ results: data }, () => {
           console.log("LOCAL STATE -->", this.state);
         })
       );
-  }
+  };
 
   handleClick = () => {
-    // DO THE FECTCH
-    //
-    console.log("TEXT TO BE SEARCHED --->", this.state.searchText);
-
     fetch(`https://swapi.co/api/people/?search=${this.state.searchText}`)
       .then(response => response.json())
       .then(data =>
@@ -57,27 +58,36 @@ class SearchBox extends Component {
   };
 
   render() {
+      const { results } = this.state;
+
     const ShowTable =
-      this.state.results && this.state.results !== null ? (
-        <SearchResults data={this.state.results} />
+      results && results !== null ? (
+        <SearchResults data={results} />
       ) : null;
 
     const ShowPrev =
-      this.state.results && this.state.results.previous !== null ? (
+      results && results.previous !== null ? (
         <div>
-          <button type="button" className="btn btn-primary" onClick={this.handlePrev}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.handlePrev}
+            style={{ background: "#FEE81F", color: "#000", marginRight: 10}}
+            
+          >
             Prev
           </button>
         </div>
       ) : null;
 
     const ShowNext =
-      this.state.results && this.state.results.next !== null ? (
+      results && results.next !== null ? (
         <div>
           <button
             type="button"
             onClick={this.handleNext}
             className="btn btn-primary"
+            style={{ background: "#FEE81F", color: "#000"}}
           >
             Next
           </button>
@@ -112,6 +122,7 @@ class SearchBox extends Component {
               type="button"
               onClick={this.handleClick}
               className="btn btn-primary"
+              style={{ background: "#FEE81F", color: "#000"}}
             >
               Search
             </button>
