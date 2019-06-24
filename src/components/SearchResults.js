@@ -24,7 +24,7 @@ class SearchResuts extends Component {
           <tr>
             <th>Name</th>
             <th>Birth Year</th>
-            <th>Height</th>
+            <th>Height</th> 
             <th>Mass</th>
           </tr>
         </thead>
@@ -32,7 +32,7 @@ class SearchResuts extends Component {
       </table>
 
     );
-
+    
   }
 
 }

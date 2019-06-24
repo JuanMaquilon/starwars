@@ -36,8 +36,26 @@ class SearchBox extends Component {
 
   render() {
     const ShowTable =
-      this.state.results !== null ? (
+      this.state.results && this.state.results !== null ? (
         <SearchResults data={this.state.results} />
+      ) : null;
+
+    const ShowPrev =
+      this.state.results && this.state.results.previous !== null ? (
+        <div>
+          <button type="button" className="btn btn-primary">
+            Prev
+          </button>
+        </div>
+      ) : null;
+
+    const ShowNext =
+      this.state.results && this.state.results.next !== null ? (
+        <div>
+          <button type="button" className="btn btn-primary">
+            Next
+          </button>
+        </div>
       ) : null;
 
     return (
@@ -76,23 +94,9 @@ class SearchBox extends Component {
 
         <div style={{ marginTop: 15 }}>{ShowTable}</div>
 
-        <div style={{ display: "flex", justifyContent: "center"}}>
-          <div>
-            <button
-              type="button"
-              className="btn btn-primary"
-            >
-              Prev
-            </button>
-          </div>
-          <div>
-            <button
-              type="button"
-              className="btn btn-primary"
-            >
-              Next
-            </button>
-          </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {ShowPrev}
+          {ShowNext}
         </div>
       </div>
     );
