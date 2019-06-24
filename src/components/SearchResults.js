@@ -10,7 +10,10 @@ class SearchResuts extends Component {
     const People = data && data.results.map(person => {
       return (
         <tr key={person.name}>
-          <th scope="row">{person.name}</th>
+          <td>{person.name}</td>
+          <td>{person.birth_year}</td>
+          <td>{person.height}</td>
+          <td>{person.mass}</td>
         </tr>
       );
     });
@@ -19,13 +22,19 @@ class SearchResuts extends Component {
       <table className="table table-dark">
         <thead>
           <tr>
-            <th scope="col">Name</th>
+            <th>Name</th>
+            <th>Birth Year</th>
+            <th>Height</th>
+            <th>Mass</th>
           </tr>
         </thead>
         <tbody>{People}</tbody>
       </table>
+
     );
+
   }
+
 }
 
 export default SearchResuts;

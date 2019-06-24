@@ -22,13 +22,6 @@ function App() {
       >
         <SearchBox/>
       </div>
-      <div
-        style={{
-          width: "100%"
-        }}
-      >
-        Two
-      </div>
     </div>
   );
 }
